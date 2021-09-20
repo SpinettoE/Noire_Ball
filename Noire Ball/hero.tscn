@@ -1,0 +1,490 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://ammo_up.gd" type="Script" id=1]
+[ext_resource path="res://ejection.gd" type="Script" id=2]
+[ext_resource path="res://hero.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/weapons/c96_2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/weapons/c96_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/weapons/levergun_0.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/HUD/heart.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Audio/Broomhandle.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sprites/weapons/revy.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Audio/Revy.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sprites/HUD/dash_icon.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/HUD/ammo_up.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/HUD/crosshair.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/weapons/levergun_2.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/weapons/flash.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/weapons/Trench_0.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Audio/Trenchgun.wav" type="AudioStream" id=17]
+[ext_resource path="res://Assets/Sprites/HUD/bullet_icon.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Audio/Levergun.wav" type="AudioStream" id=19]
+[ext_resource path="res://Assets/Sprites/weapons/thommy - Copy.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/HUD/remaining.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/weapons/c96_3.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/weapons/thommy2.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/Characters/hero.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Audio/Thommy.wav" type="AudioStream" id=25]
+[ext_resource path="res://Assets/Sprites/weapons/Trench_2.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/HUD/weapon.png" type="Texture" id=27]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.733333, 0.0470588, 0.168627, 1 )
+shadow_color = Color( 0.137255, 0.121569, 0.631373, 0.6 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.94902, 0.101961, 0.101961, 0.403922 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.168627, 0.27451, 0.666667, 1 )
+shadow_color = Color( 0.137255, 0.121569, 0.631373, 0.6 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.666667, 0.572549, 0.0313726, 1 )
+shadow_color = Color( 0.137255, 0.121569, 0.631373, 0.6 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.886275, 0.823529, 0.117647, 0.403922 )
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 106.032
+height = 0.0
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 30.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 30.0
+} ]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "idle",
+"speed": 0.5
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 0.1
+} ]
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 30.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 0.1
+} ]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 104.376, 112.251 )
+
+[node name="hero" type="KinematicBody2D"]
+position = Vector2( -152, 766.078 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 1
+script = ExtResource( 3 )
+weapon = "Thommy"
+
+[node name="HUD" type="Node2D" parent="."]
+position = Vector2( -1599.59, -870.418 )
+scale = Vector2( 5, 5 )
+
+[node name="weapon_up" type="Sprite" parent="HUD"]
+visible = false
+position = Vector2( 314.585, 74.0313 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="ammo_up" type="Sprite" parent="HUD"]
+position = Vector2( 314.585, 106.032 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 12 )
+script = ExtResource( 1 )
+
+[node name="bullet_icon" type="Sprite" parent="HUD"]
+position = Vector2( 0, -3.48152 )
+scale = Vector2( 0.0333333, 0.0333333 )
+texture = ExtResource( 18 )
+
+[node name="remaining" type="Sprite" parent="HUD"]
+position = Vector2( -0.0820313, 58.0313 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 21 )
+
+[node name="dash_icon" type="Sprite" parent="HUD"]
+position = Vector2( -1.99988, 27.6406 )
+scale = Vector2( 0.05, 0.07 )
+texture = ExtResource( 11 )
+
+[node name="heart_1" type="Sprite" parent="HUD"]
+position = Vector2( 0, 102.862 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 7 )
+
+[node name="heart_2" type="Sprite" parent="HUD"]
+position = Vector2( 29.272, 103.333 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 7 )
+
+[node name="heart_3" type="Sprite" parent="HUD"]
+position = Vector2( 58.6528, 103.333 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 7 )
+
+[node name="ammo_level" type="ProgressBar" parent="HUD"]
+margin_left = 21.5449
+margin_top = -9.59445
+margin_right = 121.545
+margin_bottom = 4.40555
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dash_level" type="ProgressBar" parent="HUD"]
+margin_left = 21.5449
+margin_top = 20.9534
+margin_right = 121.545
+margin_bottom = 34.9534
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="remaining2" type="ProgressBar" parent="HUD"]
+margin_left = 21.5449
+margin_top = 52.6983
+margin_right = 121.545
+margin_bottom = 66.6983
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( -1.93167, -4.76837e-06 )
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -1.93164, -1.93184 )
+current = true
+
+[node name="weapons" type="Node2D" parent="."]
+
+[node name="Revy" type="Node2D" parent="weapons"]
+visible = false
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Revy"]
+position = Vector2( 232.168, 14.558 )
+scale = Vector2( 2, 2 )
+z_index = 1
+frames = SubResource( 7 )
+animation = "shoot"
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Revy"]
+stream = ExtResource( 10 )
+
+[node name="flash" type="Sprite" parent="weapons/Revy"]
+visible = false
+position = Vector2( 500.092, -36.7987 )
+texture = ExtResource( 15 )
+
+[node name="ejection" type="Position2D" parent="weapons/Revy"]
+position = Vector2( 248.072, -55.3101 )
+script = ExtResource( 2 )
+
+[node name="rays" type="Node2D" parent="weapons/Revy"]
+
+[node name="ray" type="RayCast2D" parent="weapons/Revy/rays"]
+position = Vector2( 356.023, -40.2604 )
+enabled = true
+cast_to = Vector2( 1000, 0 )
+collision_mask = 3
+
+[node name="Thommy" type="Node2D" parent="weapons"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="weapons/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 8 )
+animation = "shoot"
+playing = true
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Thommy"]
+stream = ExtResource( 25 )
+
+[node name="flash" type="Sprite" parent="weapons/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 15 )
+
+[node name="rays" type="Node2D" parent="weapons/Thommy"]
+
+[node name="ray" type="RayCast2D" parent="weapons/Thommy/rays"]
+position = Vector2( 753.546, -5.30273 )
+enabled = true
+cast_to = Vector2( 1700, 0 )
+collision_mask = 3
+
+[node name="Broomhandle" type="Node2D" parent="weapons"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="weapons/Broomhandle"]
+position = Vector2( 388.936, -76.8389 )
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Broomhandle"]
+position = Vector2( 388.936, 0.00012207 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 9 )
+animation = "idle"
+speed_scale = 0.3
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Broomhandle"]
+stream = ExtResource( 8 )
+
+[node name="flash" type="Sprite" parent="weapons/Broomhandle"]
+visible = false
+position = Vector2( 703.194, -53.0296 )
+texture = ExtResource( 15 )
+
+[node name="rays" type="Node2D" parent="weapons/Broomhandle"]
+
+[node name="ray" type="RayCast2D" parent="weapons/Broomhandle/rays"]
+position = Vector2( 599.392, -56.1487 )
+enabled = true
+cast_to = Vector2( 2000, 0 )
+collision_mask = 3
+
+[node name="Trenchgun" type="Node2D" parent="weapons"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="weapons/Trenchgun"]
+position = Vector2( 388.936, -56.1485 )
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Trenchgun"]
+position = Vector2( 462.221, 63.9613 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 10 )
+animation = "shoot"
+speed_scale = 0.01
+playing = true
+
+[node name="rays" type="Node2D" parent="weapons/Trenchgun"]
+position = Vector2( -79.9752, 36.7852 )
+
+[node name="ray" type="RayCast2D" parent="weapons/Trenchgun/rays"]
+position = Vector2( 1070.95, -89.3354 )
+enabled = true
+cast_to = Vector2( 1500, 0 )
+collision_mask = 3
+
+[node name="ray2" type="RayCast2D" parent="weapons/Trenchgun/rays"]
+position = Vector2( 1093.36, -76.083 )
+rotation = 0.0872665
+enabled = true
+cast_to = Vector2( 1500, 0 )
+collision_mask = 3
+
+[node name="ray3" type="RayCast2D" parent="weapons/Trenchgun/rays"]
+position = Vector2( 1100.19, -76.0833 )
+rotation = 0.174533
+enabled = true
+cast_to = Vector2( 1500, 0 )
+collision_mask = 3
+
+[node name="ray4" type="RayCast2D" parent="weapons/Trenchgun/rays"]
+position = Vector2( 1100.19, -89.3354 )
+rotation = -0.0872665
+enabled = true
+cast_to = Vector2( 1500, 0 )
+collision_mask = 3
+
+[node name="ray5" type="RayCast2D" parent="weapons/Trenchgun/rays"]
+position = Vector2( 1093.36, -80.1829 )
+rotation = -0.174533
+enabled = true
+cast_to = Vector2( 1500, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Trenchgun"]
+stream = ExtResource( 17 )
+
+[node name="flash" type="Sprite" parent="weapons/Trenchgun"]
+position = Vector2( 1117.36, -52.5501 )
+texture = ExtResource( 15 )
+
+[node name="Thommy" type="Node2D" parent="weapons/Trenchgun"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="weapons/Trenchgun/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Trenchgun/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 8 )
+animation = "shoot"
+playing = true
+
+[node name="ray" type="RayCast2D" parent="weapons/Trenchgun/Thommy"]
+position = Vector2( 668.721, -52.5502 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Trenchgun/Thommy"]
+stream = ExtResource( 25 )
+
+[node name="flash" type="Sprite" parent="weapons/Trenchgun/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 15 )
+
+[node name="Levergun" type="Node2D" parent="weapons"]
+position = Vector2( -47.4824, 36.7854 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="weapons/Levergun"]
+position = Vector2( 388.936, -56.1485 )
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="weapons/Levergun"]
+position = Vector2( 462.221, 63.9613 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 11 )
+animation = "shoot"
+speed_scale = 0.1
+playing = true
+
+[node name="rays" type="Node2D" parent="weapons/Levergun"]
+
+[node name="ray" type="RayCast2D" parent="weapons/Levergun/rays"]
+position = Vector2( 1020.21, -39.2986 )
+enabled = true
+cast_to = Vector2( 2500, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="weapons/Levergun"]
+stream = ExtResource( 19 )
+
+[node name="flash" type="Sprite" parent="weapons/Levergun"]
+position = Vector2( 1134.5, -14.827 )
+texture = ExtResource( 15 )
+
+[node name="crosshair" type="Sprite" parent="weapons"]
+position = Vector2( 1353.49, -36.7983 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 13 )
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="hero" type="Sprite" parent="body"]
+position = Vector2( -6.72705, -63.6279 )
+texture = ExtResource( 24 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="body/hero"]
+position = Vector2( 107.11, 147.158 )
+scale = Vector2( 3, 3 )
+emission_shape = 1
+emission_sphere_radius = 1.48
+spread = 0.0
+gravity = Vector2( 0, -98 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="dash_cast" type="RayCast2D" parent="body/hero"]
+visible = false
+position = Vector2( 6.72705, 63.6279 )
+enabled = true
+cast_to = Vector2( 800, 0 )
+collision_mask = 4
+
+[node name="mirror_hero" type="Sprite" parent="body"]
+position = Vector2( -6.72702, -63.6279 )
+texture = ExtResource( 24 )
+
+[node name="coll_area" type="Area2D" parent="body"]
+position = Vector2( 3.8147e-06, -3.05176e-05 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="body/coll_area"]
+position = Vector2( 4.76837e-07, 9.2764 )
+shape = SubResource( 12 )
+
+[node name="guides" type="Node2D" parent="."]
+position = Vector2( 506.667, -2553.59 )
+scale = Vector2( 3.33333, 3.33333 )
+
+[connection signal="animation_finished" from="weapons/Thommy/sprite" to="." method="finish_anim"]
+[connection signal="animation_finished" from="weapons/Broomhandle/sprite" to="." method="finish_anim"]
+[connection signal="animation_finished" from="weapons/Trenchgun/sprite" to="." method="finish_anim"]
+[connection signal="animation_finished" from="weapons/Levergun/sprite" to="." method="finish_anim"]
+[connection signal="body_entered" from="body/coll_area" to="." method="_on_coll_area_body_entered"]
+[connection signal="body_exited" from="body/coll_area" to="." method="_on_coll_area_body_exited"]

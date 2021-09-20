@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Broomhandle.mp3-ea5447e5cb35bd20ac8b462d6ef952bc.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Broomhandle.mp3"
+dest_files=[ "res://.import/Broomhandle.mp3-ea5447e5cb35bd20ac8b462d6ef952bc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

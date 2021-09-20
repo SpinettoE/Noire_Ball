@@ -1,0 +1,391 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Audio/Revy.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sprites/weapons/revy.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/weapons/thommy2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/weapons/thommy - Copy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/weapons/flash.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Audio/Thommy.wav" type="AudioStream" id=6]
+[ext_resource path="res://ejection.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Audio/Trenchgun.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Audio/Broomhandle.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Sprites/weapons/Trench_2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/weapons/c96_3.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/HUD/crosshair.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/weapons/c96_2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/weapons/Trench_0.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/weapons/c96_1.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 30.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 15 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 30.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 30.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 1.0
+} ]
+
+[node name="weapons" type="Node2D"]
+
+[node name="Revy" type="Node2D" parent="."]
+visible = false
+
+[node name="sprite" type="AnimatedSprite" parent="Revy"]
+position = Vector2( 232.168, 14.558 )
+scale = Vector2( 2, 2 )
+z_index = 1
+frames = SubResource( 4 )
+animation = "shoot"
+
+[node name="shoot" type="AudioStreamPlayer" parent="Revy"]
+stream = ExtResource( 1 )
+
+[node name="flash" type="Sprite" parent="Revy"]
+visible = false
+position = Vector2( 500.092, -36.7987 )
+texture = ExtResource( 5 )
+
+[node name="ejection" type="Position2D" parent="Revy"]
+position = Vector2( 248.072, -55.3101 )
+script = ExtResource( 7 )
+
+[node name="rays" type="Node2D" parent="Revy"]
+
+[node name="ray" type="RayCast2D" parent="Revy/rays"]
+position = Vector2( 369.972, -36.7987 )
+enabled = true
+cast_to = Vector2( 1000, 0 )
+collision_mask = 3
+
+[node name="Thommy" type="Node2D" parent="."]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="shoot" type="AudioStreamPlayer" parent="Thommy"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )
+
+[node name="Thommy" type="Node2D" parent="Thommy"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Thommy/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Thommy/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="ray" type="RayCast2D" parent="Thommy/Thommy"]
+position = Vector2( 668.721, -52.5502 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Thommy/Thommy"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Thommy/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )
+
+[node name="rays" type="Node2D" parent="Thommy"]
+
+[node name="ray" type="RayCast2D" parent="Thommy/rays"]
+position = Vector2( 668.721, -52.5503 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="Broomhandle" type="Node2D" parent="."]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Broomhandle"]
+position = Vector2( 388.936, -76.8389 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Broomhandle"]
+position = Vector2( 388.936, 0.00012207 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 6 )
+animation = "idle"
+speed_scale = 0.3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Broomhandle"]
+stream = ExtResource( 9 )
+
+[node name="flash" type="Sprite" parent="Broomhandle"]
+position = Vector2( 703.194, -53.0296 )
+texture = ExtResource( 5 )
+
+[node name="Thommy" type="Node2D" parent="Broomhandle"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="rays" type="Node2D" parent="Broomhandle/Thommy"]
+position = Vector2( 67.832, -52.55 )
+scale = Vector2( 1.42857, 1.42857 )
+
+[node name="ray" type="RayCast2D" parent="Broomhandle/Thommy/rays"]
+position = Vector2( 420.622, 0 )
+scale = Vector2( 0.7, 0.7 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="ejection" type="Position2D" parent="Broomhandle/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Broomhandle/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="shoot" type="AudioStreamPlayer" parent="Broomhandle/Thommy"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Broomhandle/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )
+
+[node name="rays" type="Node2D" parent="Broomhandle"]
+
+[node name="ray" type="RayCast2D" parent="Broomhandle/rays"]
+position = Vector2( 668.721, -52.5503 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="Trenchgun" type="Node2D" parent="."]
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Trenchgun"]
+position = Vector2( 388.936, -56.1485 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Trenchgun"]
+position = Vector2( 462.221, 63.9613 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 7 )
+animation = "shoot"
+speed_scale = 0.01
+playing = true
+
+[node name="rays" type="Node2D" parent="Trenchgun"]
+
+[node name="ray2" type="RayCast2D" parent="Trenchgun/rays"]
+position = Vector2( 989.36, -76.8389 )
+rotation = -0.174533
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="ray5" type="RayCast2D" parent="Trenchgun/rays"]
+position = Vector2( 1013.39, -39.2983 )
+rotation = -0.523599
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="ray4" type="RayCast2D" parent="Trenchgun/rays"]
+position = Vector2( 1056.2, -39.2983 )
+rotation = 0.523599
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="ray3" type="RayCast2D" parent="Trenchgun/rays"]
+position = Vector2( 965.106, -56.1487 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="ray" type="RayCast2D" parent="Trenchgun/rays"]
+position = Vector2( 1013.39, -39.2983 )
+rotation = 0.174533
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Trenchgun"]
+stream = ExtResource( 8 )
+
+[node name="flash" type="Sprite" parent="Trenchgun"]
+position = Vector2( 1117.36, -52.5501 )
+texture = ExtResource( 5 )
+
+[node name="Thommy" type="Node2D" parent="Trenchgun"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Trenchgun/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Trenchgun/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="ray" type="RayCast2D" parent="Trenchgun/Thommy"]
+position = Vector2( 668.721, -52.5502 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Trenchgun/Thommy"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Trenchgun/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )
+
+[node name="crosshair" type="Sprite" parent="."]
+position = Vector2( 1353.49, -36.7983 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 12 )
+
+[node name="Thommy2" type="Node2D" parent="."]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Thommy2"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Thommy2"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="ray" type="RayCast2D" parent="Thommy2"]
+position = Vector2( 668.721, -52.5502 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Thommy2"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Thommy2"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )
+
+[node name="Thommy" type="Node2D" parent="Thommy2"]
+visible = false
+position = Vector2( -47.4824, 36.7852 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ejection" type="Position2D" parent="Thommy2/Thommy"]
+position = Vector2( 440.905, -4.76224 )
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="Thommy2/Thommy"]
+position = Vector2( 353.148, 85.7018 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "shoot"
+playing = true
+
+[node name="ray" type="RayCast2D" parent="Thommy2/Thommy"]
+position = Vector2( 668.721, -52.5502 )
+enabled = true
+cast_to = Vector2( 1300, 0 )
+collision_mask = 3
+
+[node name="shoot" type="AudioStreamPlayer" parent="Thommy2/Thommy"]
+stream = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="Thommy2/Thommy"]
+visible = false
+position = Vector2( 885.388, -4.76205 )
+texture = ExtResource( 5 )

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://over.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/HUD/game_over.png" type="Texture" id=2]
+
+[node name="over" type="Node2D"]
+script = ExtResource( 1 )
+time_to_menu = 3
+
+[node name="game_over" type="Sprite" parent="."]
+position = Vector2( 520, 296 )
+texture = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 520, 304 )
+current = true
